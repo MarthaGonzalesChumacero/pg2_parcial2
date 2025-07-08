@@ -11,10 +11,10 @@
 Este proyecto implementa una API REST con Django y Django REST Framework para gestionar pedidos de conos personalizados en un negocio de comida rápida. Se incorporan patrones de diseño como Factory Method, Builder y Singleton para calcular dinámicamente atributos personalizados dentro del serializador.
 
 ### Pasos a seguir
-clonar repositorio
-.gitignore
-requirements.txt
-activar entorno virtual con `python -m venv env`, `.\env\Scripts\activate`
+-clonar repositorio
+-.gitignore
+-requirements.txt
+-activar entorno virtual con `python -m venv env`, `.-\env\Scripts\activate`
 
 ### Instalar dependencias:
 pip install django djangorestframework
@@ -41,7 +41,7 @@ Se implementó el modelo PedidoCono con los siguientes campos:
 Además:
 - El modelo está registrado en el admin de Django.
 
-### ### 3. Serializador + ViewSet
+### Serializador + ViewSet
 
 Se creó un PedidoConoSerializer con los campos estándar y una validación para los toppings.
 Se añadieron dos atributos calculados:
@@ -134,9 +134,12 @@ con los atributos calculados y sus valores.
 
 ### capturas de pantalla de la interfaz de registro de datos en el
 administrador de Django
+![Api](imagenes/pedido.png)
+----
 ![Api](imagenes/adminconos.png)
 -----
-
 ### capturas de pantalla de la lista de registros en el endpoint de API REST con los atributos calculados y sus valores.
 administrador de Django
 ![Admin](imagenes/API.png)
+-----
+![Api](imagenes/listado.png)
