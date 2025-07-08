@@ -14,17 +14,18 @@ Este proyecto implementa una API REST con Django y Django REST Framework para ge
 -clonar repositorio
 -.gitignore
 -requirements.txt
--activar entorno virtual con `python -m venv env`, `.-\env\Scripts\activate`
+-activar entorno virtual con `python -m venv env`
+ -`.-\env\Scripts\activate`
 
 ### Instalar dependencias:
-pip install django djangorestframework
-pip install -r requirements.txt
+-pip install django djangorestframework
+-pip install -r requirements.txt
 
 ### Crear el proyecto y la app:
 django-admin startproject api_patrones .
 python manage.py startapp api_conos
 
-###  Configurar la base de datos en settings.py para usar SQLite
+### Configurar la base de datos en settings.py para usar SQLite
 INSTALLED_APPS = [
     ...
     'rest_framework',
@@ -122,23 +123,23 @@ class LoggerSingleton:
         return self._logs
 ````
 ---
-### rutas y endopoints
+### Rutas y endopoints
 
 - Endpoint para listar y crear pedidos: http://localhost:8000/api/pedidos_conos/
 - Administración: http://localhost:8000/admin/
 
-### pruebas y verificacion
+### Pruebas y verificacion
 capturas de pantalla de la interfaz de registro de datos en el
 administrador de Django y de la lista de registros en el endpoint de API REST
 con los atributos calculados y sus valores.
 
-### capturas de pantalla de la interfaz de registro de datos en el
+### Capturas de pantalla de la interfaz de registro de datos en el
 administrador de Django
 ![Api](imagenes/pedido.png)
 ----
 ![Api](imagenes/adminconos.png)
 -----
-### capturas de pantalla de la lista de registros en el endpoint de API REST con los atributos calculados y sus valores.
+### Capturas de pantalla de la lista de registros en el endpoint de API REST con los atributos calculados y sus valores.
 administrador de Django
 ![Admin](imagenes/API.png)
 -----
