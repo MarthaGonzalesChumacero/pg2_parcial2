@@ -1,21 +1,19 @@
 from rest_framework import serializers
-from .models import PedidoCono
-from .patrones import EstrategiaFactory
-
+from .models import PedidoCono, TOPPINGS_VALIDOS
 
 class PedidoConoSerializer(serializers.ModelSerializer):
-    precio_final = serializers.SerializerMethodField()
-    ingredientes_finales = serializers.SerializerMethodField()
-
     class Meta:
         model = PedidoCono
-        fields = '__all__'  # Incluye cliente, variante, toppings, etc.
-        read_only_fields = ['precio_final', 'ingredientes_finales']
+        fields = ['cliente', 'variante', 'toppings', 'tamanio_cono']
 
-    def get_precio_final(self, obj):
-        estrategia = EstrategiaFactory.obtener_estrategia(obj.variante)
-        return estrategia.calcular_precio(obj.tamanio_cono)
-
-    def get_ingredientes_finales(self, obj):
-        estrategia = EstrategiaFactory.obtener_estrategia(obj.variante)
-        return estrategia.ingredientes_extra(obj.toppings)
+    def validate_toppings(self, value):
+        if not isinstance(value, list):
+            raise serializers.ValidationError("Toppings debe ser una lista.")
+        
+        invalidos = [t for t in value if t not in TOPPINGS_VALIDOS]
+        if invalidos:
+            raise serializers.ValidationError(
+                f"Los siguientes toppings no son válidos: {', '.join(invalidos)}"
+            )
+        
+        return value

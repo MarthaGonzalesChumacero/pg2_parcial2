@@ -26,12 +26,15 @@ class PedidoCono(models.Model):
     fecha_pedido = models.DateField(auto_now_add=True)
 
     def clean(self):
-        toppings_set = set(self.toppings)
-        if not toppings_set.issubset(TOPPINGS_VALIDOS):
-            raise ValidationError(f"Toppings inválidos: {toppings_set - TOPPINGS_VALIDOS}")
+        if not isinstance(self.toppings, list):
+            raise ValidationError("Toppings debe ser una lista.")
+
+        for topping in self.toppings:
+            if topping not in TOPPINGS_VALIDOS:
+                raise ValidationError(f"Topping inválido: {topping}")
 
     def save(self, *args, **kwargs):
-        self.full_clean()
+        self.full_clean()  # Valida antes de guardar
         super().save(*args, **kwargs)
 
     def __str__(self):
